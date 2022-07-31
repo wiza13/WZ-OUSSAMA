@@ -82,6 +82,9 @@ def back():
 	menu()
 def banner():
 	clear()
+
+
+
 CorrectUsername = '111'
     
     
